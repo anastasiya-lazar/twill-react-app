@@ -1,0 +1,45 @@
+.frame-wrap {
+  margin-top: 130px;
+
+  .frame-img {
+    width: 236px;
+    height: 506px;
+    margin-right: 110px;
+  }
+
+  .frame {
+    padding: 56px 48px;
+    height: 408px;
+    width: 560px;
+    border: 1px solid black;
+    background: #233846;
+    border-radius: 32px;
+    color: white;
+    text-align: left;
+
+    &-header {
+      font-family: 'GT Walsheim';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 48px;
+    }
+
+    &-content {
+      font-family: 'GT Walsheim';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 32px;
+    }
+
+    &-button {
+      background: #F24C00;
+      border-radius: 22px;
+      padding: 8px 32px;
+      align-self: flex-start;
+    }
+
+
+  }
+}
