@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import classNames from "classnames";
 
 import "./IntroduceContent.scss";
+import Button, {ButtonType} from "../../Button";
 
 type IntroduceContentProps = {
   className?: string;
@@ -32,9 +33,7 @@ const IntroduceContent: FC<IntroduceContentProps> = ({
       <div className="frame flex flex-col justify-between">
         <div className="frame-header">{title}</div>
         <div className="frame-content">{description}</div>
-        <button className="frame-button" onClick={onClick}>
-          {buttonTitle}
-        </button>
+        <Button className="self-start" title={buttonTitle} onClick={onClick} type={ButtonType.Primary} />
       </div>
     </div>
   );

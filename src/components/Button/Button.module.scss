@@ -1,0 +1,50 @@
+@mixin button() {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px 32px;
+  border-radius: 22px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.primary {
+  @include button();
+  background: #f24c00;
+  color: white;
+  &:hover {
+    background: #f46726;
+  }
+}
+
+.secondary {
+  @include button();
+  text-transform: capitalize;
+  background-color: #f8f8f8;
+  color: #555;
+  padding: 10px 15px;
+  &:hover {
+    background-color: #fff2eb;
+    color: #f24c00;
+  }
+}
+
+.primaryOutline {
+  @include button();
+  color: #f24c00;
+  border: 1px solid #f24c00;
+  &:hover {
+    background: #f24c00;
+    color: white;
+  }
+}
+
+.disabled {
+  @include button();
+  background: #d0d0d0;
+  color: #ffffff;
+  pointer-events: none;
+}
