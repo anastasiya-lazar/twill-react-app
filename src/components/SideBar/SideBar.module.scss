@@ -1,0 +1,18 @@
+.asideBar {
+  min-width: 225px;
+  height: calc(100vh - 80px);
+
+  .menuitem {
+    color: red;
+  }
+  .dropdown {
+    color: yellow;
+  }
+  .selected {
+    color: blue;
+  }
+
+  //.opened {
+  //  color: green;
+  //}
+}
