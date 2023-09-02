@@ -4,12 +4,27 @@ import classNames from "classnames";
 import styles from "./SideBar.module.scss";
 import MainFooter from "../MainFooter";
 import { NavLink } from "react-router-dom";
+import explore from "@/assets/icons/explore.svg";
+import experts from "@/assets/icons/user-md.svg";
+import more from "@/assets/icons/more_round.svg";
+import exploreActive from "@/assets/icons/explore_solid.svg";
+import expertsActive from "@/assets/icons/user-md-solid.svg";
+import moreActive from "@/assets/icons/more_round_solid.svg";
 
 enum SideBarItems {
   Explore = "explore",
   Experts = "experts",
   More = "more",
 }
+
+const Icons = {
+  [SideBarItems.Explore]: explore,
+  [SideBarItems.Experts]: experts,
+  [SideBarItems.More]: more,
+  [SideBarItems.Explore + "Active"]: exploreActive,
+  [SideBarItems.Experts + "Active"]: expertsActive,
+  [SideBarItems.More + "Active"]: moreActive,
+};
 
 enum MoreDropdownItems {
   PrivacyPolicy = "privacy-policy",
@@ -29,13 +44,14 @@ const SideBar = () => {
     if (item === SideBarItems.More) {
       setOpened(!isOpened);
     } else {
-      // setSelected(item);
-      if (Object.values(MoreDropdownItems).includes(item)) {
+      if (
+        Object.values(MoreDropdownItems).includes(item as MoreDropdownItems)
+      ) {
         setSelected(SideBarItems.More);
-        setMoreItemSelected(item);
+        setMoreItemSelected(item as MoreDropdownItems);
       } else {
         setMoreItemSelected(null);
-        setSelected(item);
+        setSelected(item as SideBarItems);
       }
     }
   };
@@ -86,23 +102,40 @@ const SideBar = () => {
     <div key={key}>
       {key !== SideBarItems.More ? (
         <NavLink
-          className={classNames(styles.menuitem, {
-            [styles.selected]: selected === key,
-            [styles.opened]: isOpened && key === SideBarItems.More,
-          })}
+          className={classNames(
+            styles.menuitem,
+            {
+              [styles.menuitemSelected]: selected === key,
+            },
+            "flex",
+            "gap-3.5",
+            "items-center"
+          )}
           onClick={onClick(key)}
           to={`/${key}`}
         >
+          <img
+            src={selected === key ? Icons[key + "Active"] : Icons[key]}
+            alt={key}
+            className={styles.icon}
+          />
           {name}
         </NavLink>
       ) : (
         <div
-          className={classNames(styles.menuitem, {
-            [styles.selected]: selected === key,
-            [styles.opened]: isOpened && key === SideBarItems.More,
-          })}
+          className={classNames(
+            styles.menuitem,
+            {
+              [styles.menuitemSelected]: selected === key,
+              [styles.opened]: isOpened && key === SideBarItems.More,
+            },
+            "flex",
+            "gap-3.5",
+            "items-center"
+          )}
           onClick={onClick(key)}
         >
+          <img src={Icons[key]} alt={key} className={styles.icon} />
           {name}
         </div>
       )}
@@ -119,7 +152,7 @@ const SideBar = () => {
     <div>
       <NavLink
         className={classNames(styles.dropdown, {
-          [styles.selected]: moreItemSelected === key,
+          [styles.menuitemSelected]: moreItemSelected === key,
         })}
         key={key}
         onClick={onClick(key)}
@@ -132,9 +165,9 @@ const SideBar = () => {
 
   return (
     <aside
-      className={classNames(styles.asideBar, "flex flex-col justify-between")}
+      className={classNames(styles.asideBar, "flex flex-col justify-between pt-10")}
     >
-      <div className="flex flex-col text-left px-5">
+      <div className="flex flex-col text-left gap-10">
         {menuItems.map(renderItems)}
         {isOpened && <div>{MoreItems.map(renderMoreItems)}</div>}
       </div>

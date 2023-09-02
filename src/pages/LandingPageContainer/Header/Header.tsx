@@ -1,8 +1,8 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {HEADER_LINKS} from "../../../constants/links.ts";
-import {Logo} from "../../../assets/icons";
-import Button, {ButtonType} from "../../../components/Button";
+import {HEADER_LINKS} from "@/constants/links";
+import {Logo} from "@/assets/icons";
+import Button, {ButtonType} from "@/components/Button";
 
 const Header: React.FC = () => {
   return (

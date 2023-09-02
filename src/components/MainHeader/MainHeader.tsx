@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Logo } from "../../assets/icons";
-import Button, { ButtonType } from "../../components/Button";
+import { Logo } from "@/assets/icons";
+import Button, { ButtonType } from "@/components/Button";
 
 const MAIN_HEADER_LINKS = [
   {
-    url: "/well-being",
+    url: "/well_being",
     name: "Well-Being",
   },
   {
@@ -21,22 +21,26 @@ const MAIN_HEADER_LINKS = [
     name: "Psoriasis",
   },
   {
-    url: "/women-midlife",
+    url: "/wam",
     name: "Women & Midlife",
   },
 ];
 const MainHeader: React.FC = () => {
   return (
-    <div className="w-full h-20 px-8 flex justify-between">
-      <NavLink className="w-56" to={"/"}>
+    <div className="flex items-center">
+    <div className="w-full h-20 flex">
+      <NavLink className="w-56 flex items-center" to={"/"}>
         <Logo />
       </NavLink>
       <div className={"flex items-center"}>
         {MAIN_HEADER_LINKS.map(({ url, name }, index) => (
-          <NavLink className="mr-10" key={`${url}_${index}`} to={url}>
+          <NavLink className="mr-10" key={`${url}_${index}`} to={`/explore${url}`}>
             {name}
           </NavLink>
         ))}
+      </div>
+    </div>
+        <div className="flex items-center whitespace-nowrap gap-4">
         <Button
           title={"Log In"}
           onClick={() => {}}

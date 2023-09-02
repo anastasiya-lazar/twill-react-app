@@ -1,6 +1,6 @@
 import React from "react";
-import {Carousel} from "../../components/Carousel/Carousel.tsx";
-import Introduce from "../../components/Introduce";
+import {Carousel} from "@/components/Carousel/Carousel.tsx";
+import Introduce from "@/components/Introduce";
 
 const Home = () => {
     return (
