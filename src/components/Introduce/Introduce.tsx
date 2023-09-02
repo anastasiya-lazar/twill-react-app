@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import {useMemo} from "react";
 import IntroduceContent from "./IntroduceContent";
 import styles from "./Introduce.module.scss";
 import classNames from "classnames";

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import {FilterItemsListType, TopicItemsListType} from "@/@types";
 import classNames from "classnames";
@@ -10,12 +10,14 @@ type SectionContainerProps = {
   description: string;
   filters: FilterItemsListType;
   topics: TopicItemsListType;
+  communityId?: string;
 };
 const SectionContainer: FC<SectionContainerProps> = ({
   title,
   description,
   filters,
   topics,
+  communityId,
 }) => {
   return (
     <div>
@@ -36,6 +38,7 @@ const SectionContainer: FC<SectionContainerProps> = ({
           <div key={`subTitle_${id}`}>
             <div>{name}</div>
             <div>{description}</div>
+            <div>{communityId}</div>
           </div>
         ))}
       </div>

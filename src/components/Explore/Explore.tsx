@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,7 +39,7 @@ const Explore = () => {
   }, [dispatch, communityId]);
 
   return (
-    <div>
+    <div className="w-full">
       <div className={classNames(styles.filterBlock, "flex flex-wrap gap-1.5")}>
         {filters.map(({ name, id }) => (
           <Button
@@ -55,6 +55,7 @@ const Explore = () => {
         description={"description"}
         filters={filters}
         topics={topics}
+        communityId={communityId}
       />
     </div>
   );
