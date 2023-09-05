@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         {HEADER_LINKS.map(({ url, name }, index) => (
           <NavLink className="mr-10" key={`${url}_${index}`} to={url}>{name}</NavLink>
         ))}
-        <Button title={"Sign Up"} onClick={()=>{}} type={ButtonType.Primary} />
+        <Button className="uppercase" title={"Sign Up"} onClick={()=>{}} type={ButtonType.Primary} />
       </div>
     </div>
   );

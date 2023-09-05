@@ -7,7 +7,7 @@ import Explore from "../components/Explore";
 
 export enum RoutesList {
   LandingHome = "/", // Home page
-  Articles = "/articles", // Articles page
+  // Articles = "/articles", // Articles page
   Experts = "/experts", // Experts page
   AboutUs = "/about-us", // About Us page
   Explore = "/explore/:communityId", // Explore page
@@ -20,7 +20,7 @@ const Router = () => {
           <Route path={RoutesList.LandingHome} element={<Home />} />
         </Route>
         <Route path={RoutesList.LandingHome} element={<MainPageContainer />}>
-          <Route path={RoutesList.Articles} element={<div>Articles</div>} />
+          {/*<Route path={RoutesList.Articles} element={<div>Articles</div>} />*/}
           <Route path={RoutesList.Experts} element={<div>Experts</div>} />
           <Route path={RoutesList.AboutUs} element={<AboutPage />} />
           <Route path={RoutesList.Explore} element={<Explore />} />

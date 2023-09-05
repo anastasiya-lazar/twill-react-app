@@ -27,7 +27,7 @@ const MAIN_HEADER_LINKS = [
 ];
 const MainHeader: React.FC = () => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center pr-2">
     <div className="w-full h-20 flex">
       <NavLink className="w-56 flex items-center" to={"/"}>
         <Logo />
