@@ -4,6 +4,7 @@ import LandingPageContainer from "./LandingPageContainer";
 import MainPageContainer from "./MainPageContainer/MainPageContainer.tsx";
 import { AboutPage } from "../components/SideBar/More/More.tsx";
 import Explore from "../components/Explore";
+import SignPageContainer from "@/pages/SignPageContainer/SignPageContainer.tsx";
 
 export enum RoutesList {
   LandingHome = "/", // Home page
@@ -11,6 +12,8 @@ export enum RoutesList {
   Experts = "/experts", // Experts page
   AboutUs = "/about-us", // About Us page
   Explore = "/explore/:communityId", // Explore page
+  SignUp = "/sign-up", // Sign Up page
+  LogIn = "/log-in", // Log In page
 }
 const Router = () => {
   return (
@@ -24,6 +27,10 @@ const Router = () => {
           <Route path={RoutesList.Experts} element={<div>Experts</div>} />
           <Route path={RoutesList.AboutUs} element={<AboutPage />} />
           <Route path={RoutesList.Explore} element={<Explore />} />
+        </Route>
+        <Route path={RoutesList.LandingHome} element={<SignPageContainer />}>
+          <Route path={RoutesList.SignUp} element={<div>Sign Up</div>} />
+          <Route path={RoutesList.LogIn} element={<div>Log In</div>} />
         </Route>
       </Routes>
     </BrowserRouter>

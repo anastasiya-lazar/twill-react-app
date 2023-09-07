@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TopicsSectionListType, getTopicsDataPayload } from "@/@types";
+import { createSelector } from "reselect";
+import {
+  TopicsSectionListType,
+  getTopicsDataPayload,
+  TopicsSectionType,
+} from "@/@types";
 import { RootState } from "../store.ts";
 
 type InitialState = { sectionData: TopicsSectionListType };
@@ -20,18 +25,24 @@ const topicsSlice = createSlice({
 export const { setTopicsData, getTopicsData } = topicsSlice.actions;
 export default topicsSlice.reducer;
 
+const selectTopicsSectionData = (state: RootState) =>
+  state.topicsReducer.sectionData;
+
 export const TopicsSelectors = {
-  getTagsSectionData: (state: RootState) => {
-    const sectionData = state.topicsReducer.sectionData;
-    return [
+  getTagsSectionData: createSelector(
+    [selectTopicsSectionData], // List of input selectors
+    (sectionData: TopicsSectionListType) => [
       { name: `View All`, id: -1 },
-      ...sectionData.map((filter) => ({ name: filter.name, id: filter.id})),
-    ];
-  },
-  getTopicsSectionData: (state: RootState) => {
-    const sectionData = state.topicsReducer.sectionData;
-    return sectionData.map((filter) => ({ name: filter.name, id: filter.id, description: filter.description }));
-  }
+      ...sectionData.map((filter) => ({ name: filter.name, id: filter.id })),
+    ]
+  ),
+  getTopicsSectionData: createSelector(
+    [selectTopicsSectionData], // List of input selectors
+    (sectionData: TopicsSectionType[]) =>
+      sectionData.map((filter) => ({
+        name: filter.name,
+        id: filter.id,
+        description: filter.description,
+      }))
+  ),
 };
-
-

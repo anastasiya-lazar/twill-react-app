@@ -11,12 +11,14 @@ const getAllTopics = (community: string) => {
   return API.get("/threads/all/", { community });
 };
 
-const getArticles = (community: string, limit = 10, topics = "") =>
-  API.get("/happifiers/list/", {
+const getArticles = (community: string, topics:number, limit = 10, ) => {
+  console.log('requesting api')
+  return API.get("/happifiers/list/", {
     limit,
     topics,
     community,
     user_access_token: null,
     next_page: null,
   });
+}
 export default { getArticles, getAllTopics };

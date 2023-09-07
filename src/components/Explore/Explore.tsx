@@ -11,20 +11,10 @@ import Button, { ButtonType } from "../Button";
 import SectionContainer from "../SectionContainer";
 import styles from "./Explore.module.scss";
 
-
 const Explore = () => {
   const dispatch = useDispatch();
   const { communityId } = useParams();
-  // const [filters, setFilters] = useState<FilterItemsListType>([]);
-  // useEffect(() => {
-  //   if (communityId) {
-  //     const communityFilters = [
-  //       { name: `View All`, id: -1 },
-  //       ...MockFilters.map((filter) => ({ name: filter.name, id: filter.id })),
-  //     ];
-  //     setFilters(communityFilters);
-  //   }
-  // }, [communityId]);
+
   const filters = useSelector(TopicsSelectors.getTagsSectionData);
   const topics = useSelector(TopicsSelectors.getTopicsSectionData);
 
@@ -39,7 +29,7 @@ const Explore = () => {
   }, [dispatch, communityId]);
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col">
       <div className={classNames(styles.filterBlock, "flex flex-wrap gap-1.5")}>
         {filters.map(({ name, id }) => (
           <Button
@@ -55,7 +45,6 @@ const Explore = () => {
         description={"description"}
         filters={filters}
         topics={topics}
-        communityId={communityId}
       />
     </div>
   );

@@ -1,7 +1,9 @@
 .asideBar {
   padding-left: 2rem;
+  min-width: 225px;
   width: 225px;
   height: calc(100vh - 80px);
+  margin-right: 25px;
 
   .menuitem {
     color: #666666;
@@ -14,7 +16,8 @@
     .icon {
       height: 24px;
       width: 24px;
-      border-radius: 0;}
+      border-radius: 0;
+    }
   }
   .dropdown {
     color: #666666;

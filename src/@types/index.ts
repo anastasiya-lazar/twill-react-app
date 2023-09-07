@@ -1,6 +1,6 @@
-export type FilterItemType = { name: string; id: number};
+export type FilterItemType = { name: string; id: number };
 export type FilterItemsListType = FilterItemType[];
-export type TopicItemType = { name: string; id: number, description: string };
+export type TopicItemType = { name: string; id: number; description: string };
 export type TopicItemsListType = TopicItemType[];
 
 export type SubtopicType = {
@@ -36,8 +36,8 @@ export type ArticleType = {
   publisher_name?: string;
   publisher_image?: string;
   publisher_info?: string;
-  authors: {author_name: string}[];
-  experts: {expert_name: string, expert_link?: string}[];
+  authors: { author_name: string }[];
+  experts: { expert_name: string; expert_link?: string }[];
   image: string;
   og_image: string;
   right_rail_image: string;
@@ -46,7 +46,7 @@ export type ArticleType = {
   title: string;
   human_url: string;
   description: string;
-  communities: {id: number, community_id: string, name: string}[];
+  communities: { id: number; community_id: string; name: string }[];
   content_type?: string;
   suggested_index: number;
   audio_duration?: string;
@@ -61,7 +61,7 @@ export type ArticleType = {
   happifier_type: string;
   score: number;
   likes: number;
-}
+};
 
 export type ArticlesSectionType = {
   records: ArticleType[];
@@ -70,8 +70,8 @@ export type ArticlesSectionType = {
 };
 
 export type ArticlesByTopicSectionType = {
-  topics: string;
-  articles_section_data: ArticlesSectionType;
+  id: number;
+  data?: ArticlesSectionType;
 };
 
 export type ArticlesSectionListType = ArticlesByTopicSectionType[];

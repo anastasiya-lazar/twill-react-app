@@ -1,23 +1,23 @@
 import { FC } from "react";
 
-import {FilterItemsListType, TopicItemsListType} from "@/@types";
+import { FilterItemsListType, TopicItemsListType } from "@/@types";
 import classNames from "classnames";
 import Button, { ButtonType } from "../Button";
 import styles from "./SectionContainer.module.scss";
+
+import ArticlesContainer from "@/components/ArticlesContainer";
 
 type SectionContainerProps = {
   title: string;
   description: string;
   filters: FilterItemsListType;
   topics: TopicItemsListType;
-  communityId?: string;
 };
 const SectionContainer: FC<SectionContainerProps> = ({
   title,
   description,
   filters,
   topics,
-  communityId,
 }) => {
   return (
     <div>
@@ -36,9 +36,10 @@ const SectionContainer: FC<SectionContainerProps> = ({
       <div>
         {topics.map(({ name, id, description }) => (
           <div key={`subTitle_${id}`}>
+            <div>{id}</div>
             <div>{name}</div>
             <div>{description}</div>
-            <div>{communityId}</div>
+            <ArticlesContainer topicId={id} />
           </div>
         ))}
       </div>
