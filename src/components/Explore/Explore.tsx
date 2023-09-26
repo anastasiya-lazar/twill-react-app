@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,6 +12,7 @@ import SectionContainer from "../SectionContainer";
 import styles from "./Explore.module.scss";
 
 const Explore = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { communityId } = useParams();
 
@@ -35,7 +36,7 @@ const Explore = () => {
           <Button
             key={`filter_${id}`}
             title={name}
-            onClick={() => {}}
+            onClick={() => {navigate(`/feed/${communityId}/topics/${id}`)}}
             type={ButtonType.Secondary}
           />
         ))}

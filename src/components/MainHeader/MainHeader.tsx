@@ -1,31 +1,22 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, {useEffect} from "react";
+import {NavLink, useParams} from "react-router-dom";
 import { Logo } from "@/assets/icons";
 import Button, { ButtonType } from "@/components/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {TopicsSelectors, getCommunities} from "@/redux/reducers/topicsSlice.ts";
+import {CommunitiesListType} from "@/@types";
+import classNames from "classnames";
+import styles from "./MainHeader.module.scss";
 
-const MAIN_HEADER_LINKS = [
-  {
-    url: "/well_being",
-    name: "Well-Being",
-  },
-  {
-    url: "/pregnancy",
-    name: "Pregnancy",
-  },
-  {
-    url: "/ms",
-    name: "MS",
-  },
-  {
-    url: "/psoriasis",
-    name: "Psoriasis",
-  },
-  {
-    url: "/wam",
-    name: "Women & Midlife",
-  },
-];
+
 const MainHeader: React.FC = () => {
+  const dispatch = useDispatch();
+  const {communityId} = useParams();
+  const communities: CommunitiesListType = useSelector(TopicsSelectors.getCommunities);
+
+  useEffect(() => {
+    dispatch(getCommunities());
+  }, [dispatch]);
   return (
     <div className="flex items-center pr-2">
       <div className="w-full h-20 flex">
@@ -33,11 +24,11 @@ const MainHeader: React.FC = () => {
           <Logo />
         </NavLink>
         <div className={"flex items-center"}>
-          {MAIN_HEADER_LINKS.map(({ url, name }, index) => (
+          {communities.map(({ id, community_id, name }) => (
             <NavLink
-              className="mr-10"
-              key={`${url}_${index}`}
-              to={`/explore${url}`}
+              className={classNames("mr-10", {[styles.active]: communityId === community_id})}
+              key={`${community_id}_${id}`}
+              to={`/explore/${community_id}`}
             >
               {name}
             </NavLink>

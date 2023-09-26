@@ -31,6 +31,11 @@ export type getTopicsDataPayload = {
   communityId: string;
 };
 
+export type getSubtopicsDataPayload = {
+  communityId: string;
+  topicId: number;
+}
+
 export type ArticleType = {
   publisher?: string;
   publisher_name?: string;
@@ -81,3 +86,12 @@ export type getArticlesDataPayload = {
   topics: string;
   limit?: number;
 };
+
+export type CommunityType = {
+  id: number;
+  "community_id": string;
+  "model_type": string;
+  "name": string;
+}
+
+export type CommunitiesListType = CommunityType[];

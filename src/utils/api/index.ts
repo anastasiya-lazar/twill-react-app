@@ -12,7 +12,7 @@ const getAllTopics = (community: string) => {
 };
 
 const getArticles = (community: string, topics:number, limit = 10, ) => {
-  console.log('requesting api')
+  console.log(`requesting api with ${community} ${topics} ${limit}`);
   return API.get("/happifiers/list/", {
     limit,
     topics,
@@ -21,4 +21,9 @@ const getArticles = (community: string, topics:number, limit = 10, ) => {
     next_page: null,
   });
 }
-export default { getArticles, getAllTopics };
+
+const getAllCommunities = () => {
+  return API.get("communities/list/");
+}
+
+export default { getArticles, getAllTopics, getAllCommunities };

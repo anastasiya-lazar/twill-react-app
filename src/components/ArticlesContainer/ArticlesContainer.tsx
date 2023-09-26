@@ -1,57 +1,83 @@
-import { FC, useMemo } from "react";
-import { ArticlesSelectors } from "@/redux/reducers/articlesSlice.ts";
+import {FC, ReactNode} from "react";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import styles from "./ArticlesContainer.module.scss";
 import classNames from "classnames";
 
-import { BeatLoader } from "react-spinners"; // Import BeatLoader from react-spinners
+import { BeatLoader } from "react-spinners";
+import { TopicsSelectors } from "@/redux/reducers/topicsSlice.ts";
+import { ArticleType } from "@/@types"; // Import BeatLoader from react-spinners
 
 type ArticlesContainerProps = {
   topicId: number;
 };
 
 SwiperCore.use([Navigation]);
+type ArticleCardProps = {
+  article: ArticleType;
+}
+
+type RecordsSlideType = {[k in string]:ReactNode}[]
+
+const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
+  const { image, title, communities } = article;
+  return (
+    <div className="cover-slide">
+      <img className={"h-20"} src={image} alt={title} />
+      <div>{title}</div>
+      {communities.map(({ name }) => (
+        <div key={`community_${name}`}>{name}</div>
+      ))}
+    </div>
+  );
+};
 
 const ArticlesContainer: FC<ArticlesContainerProps> = ({ topicId }) => {
+  console.log(topicId);
   const articles = useSelector(
-    useMemo(
-      () => ArticlesSelectors.getArticlesSectionDataByTopic(topicId),
-      [topicId]
-    )
+    TopicsSelectors.getArticlesSectionDataByTopic(topicId)
   );
   console.log(articles);
 
   const renderSlides = () => {
     if (articles && articles.records) {
-      // Check if articles data is available
-      const slides = [];
-      for (let i = 0; i < articles.records.length; i += 2) {
-        const articlesInSlide =
-          i === 0
-            ? articles.records.slice(i, i + 1)
-            : articles.records.slice(i, i + 2);
-        slides.push(
+      const formattedArticles: RecordsSlideType =
+        articles.records.reduce((prevArr: RecordsSlideType, article: ArticleType) => {
+        if (
+          !prevArr.length ||
+          prevArr.length === 1 ||
+          prevArr[prevArr.length - 1].bottom
+        ) {
+          return [
+            ...prevArr,
+            {
+              top: <ArticleCard article={article} />,
+              bottom: null,
+            },
+          ];
+        } else {
+          const formattedLastItem = {
+            ...prevArr[prevArr.length - 1],
+            bottom: <ArticleCard article={article} />,
+          };
+          return [...prevArr.slice(0, prevArr.length - 1), formattedLastItem];
+        }
+      }, []);
+
+      return formattedArticles.map(({ top, bottom }, i) => {
+        return (
           <SwiperSlide
             key={`slide_${i}`}
             className={
-              i === 0 ? styles["special-slide"] : styles["regular-slide"]
+              !bottom ? styles["special-slide"] : styles["regular-slide"]
             }
           >
-            {articlesInSlide.map(({ id, image, title, communities }) => (
-              <div className="cover-slide" key={`article_${id}`}>
-                <img className={"h-20"} src={image} alt={title} />
-                <div>{title}</div>
-                {communities.map(({ name }) => (
-                  <div key={`community_${name}`}>{name}</div>
-                ))}
-              </div>
-            ))}
+            {top}
+            {bottom}
           </SwiperSlide>
         );
-      }
-      return slides;
+      });
     } else {
       console.log("skeleton");
       return (
