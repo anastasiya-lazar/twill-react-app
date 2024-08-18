@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 import classNames from "classnames";
 
 import styles from "./Button.module.scss";
+import { NavLink } from "react-router-dom";
 export enum ButtonType {
   Primary = "primary",
   Secondary = "secondary",
@@ -10,7 +11,8 @@ export enum ButtonType {
 
 type ButtonProps = {
   title: string | ReactNode;
-  onClick: () => void;
+  to?: string;
+  onClick?: () => void;
   type: ButtonType;
   disabled?: boolean;
   className?: string;
@@ -18,6 +20,7 @@ type ButtonProps = {
 
 const Button: FC<ButtonProps> = ({
   title,
+  to,
   onClick,
   type,
   disabled,
@@ -25,16 +28,27 @@ const Button: FC<ButtonProps> = ({
 }) => {
   const buttonStyle = styles[type];
 
-  return (
-    <div
-      className={classNames(buttonStyle, className, {
-        [styles.disabled]: disabled,
-      })}
-      onClick={onClick}
-    >
-      {title}
-    </div>
-  );
+  const commonProps = {
+    className: classNames(buttonStyle, className, {
+      [styles.disabled]: disabled,
+    }),
+  };
+
+  if (onClick) {
+    return (
+      <div {...commonProps} onClick={onClick}>
+        {title}
+      </div>
+    );
+  } else if (to) {
+    return (
+      <NavLink {...commonProps} to={to}>
+        {title}
+      </NavLink>
+    );
+  } else {
+    return <div {...commonProps}>{title}</div>;
+  }
 };
 
 export default Button;

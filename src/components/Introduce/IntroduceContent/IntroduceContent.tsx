@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import classNames from "classnames";
 
 import "./IntroduceContent.scss";
-import Button, {ButtonType} from "../../Button";
+import Button, {ButtonType} from "@/components/Button";
 
 type IntroduceContentProps = {
   className?: string;

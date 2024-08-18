@@ -1,6 +1,5 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore from "swiper/core";
+import SwiperCore from "swiper";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -15,7 +14,6 @@ import "swiper/swiper.min.css";
 import styles from "./Carousel.module.scss";
 import Button, { ButtonType } from "../Button";
 import classNames from "classnames";
-
 
 interface Community {
   title: string;
@@ -53,7 +51,6 @@ const communities: Community[] = [
 SwiperCore.use([Pagination, Autoplay]);
 
 export const Carousel = () => {
-
   const renderSlides = () =>
     communities.map((community, index) => (
       <SwiperSlide key={index}>
@@ -64,7 +61,7 @@ export const Carousel = () => {
             title={"Join now"}
             onClick={() => {}}
             type={ButtonType.Primary}
-            className={`w-40`}
+            className={`w-40 uppercase`}
           />
         </div>
         <div className={`image ${community.imageClass}`}></div>
@@ -92,7 +89,7 @@ export const Carousel = () => {
           disableOnInteraction: false,
           waitForTransition: false,
         }}
-        className={styles.introduceCarousel}
+        className={classNames(styles["introduce-carousel"], "pl-8")}
       >
         {renderSlides()}
 
@@ -103,6 +100,7 @@ export const Carousel = () => {
           )}
         ></div>
       </Swiper>
+      <div className={classNames(styles["carousel-bg"])}></div>
     </div>
   );
 };

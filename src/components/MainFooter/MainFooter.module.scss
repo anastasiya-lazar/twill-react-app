@@ -1,12 +1,25 @@
-.mainFooter {
-  background-color: #f8f8f8;
-  padding-top: 100px;
-  img {
-    max-width: 224px;
-    padding: 48px 0 55px 0;
-  }
-  p {
-    padding-bottom: 32px;
-    max-width: 320px;
-  }
+
+.socialIcons {
+  color: #666;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #fbc9b3;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: start;
+}
+.disclaimer {
+  color: #aaa;
+  line-height: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #fbc9b3;
+  font-size: 10px;
+  text-align: start;
+}
+
+.copyRight {
+  color: #aaa;
+  font-size: 10px;
+  line-height: 12px;
 }

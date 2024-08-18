@@ -3,7 +3,7 @@ type Link = {
     name: string;
 }
 export const HEADER_LINKS: Link[] = [
-    {url: "/articles", name: "Articles"},
+    {url: "/explore/psoriasis", name: "Articles"},
     {url: "/experts", name: "Experts"},
     {url: "#", name: "Login"},
 ]

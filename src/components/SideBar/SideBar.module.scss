@@ -1,18 +1,25 @@
 .asideBar {
+  padding-left: 2rem;
   min-width: 225px;
+  width: 225px;
   height: calc(100vh - 80px);
+  margin-right: 25px;
 
   .menuitem {
-    color: red;
+    color: #666666;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    &Selected {
+      color: #000000;
+    }
+    .icon {
+      height: 24px;
+      width: 24px;
+      border-radius: 0;
+    }
   }
   .dropdown {
-    color: yellow;
+    color: #666666;
   }
-  .selected {
-    color: blue;
-  }
-
-  //.opened {
-  //  color: green;
-  //}
 }

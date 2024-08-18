@@ -1,8 +1,7 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import classNames from "classnames";
 import styles from "./Footer.module.scss";
-import logo from "../../../assets/img/logoHorizontal.svg";
+import logo from "@/assets/img/logoHorizontal.svg";
 
 import "./Footer.module.scss";
 

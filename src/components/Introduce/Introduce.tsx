@@ -1,8 +1,8 @@
-import React, {useMemo} from "react";
+import {useMemo} from "react";
 import IntroduceContent from "./IntroduceContent";
 import styles from "./Introduce.module.scss";
 import classNames from "classnames";
-import pic1 from "../../assets/img/landing/Mockup-3.svg";
+import pic1 from "@/assets/img/landing/Mockup-3.svg";
 
 const Introduce = () => {
   const contentList = useMemo(() => [
